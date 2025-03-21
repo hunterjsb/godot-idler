@@ -3,6 +3,7 @@ extends Node
 ##Base class for all states.
 class_name State
 
+@export_group("Settings")
 @export var delay_start := Vector2.ZERO ## If greater than 0, waits for N seconds before enabling the state, where N is a random value between the minimum (x) and maximum (y) range.
 @export var disabled := false ## Set to true to avoid processing this state.
 @export_category("Advance")
@@ -64,6 +65,9 @@ func update(_delta: float):
 	pass
 
 func physics_update(_delta: float):
+	pass
+
+func handle_input(_event: InputEvent):
 	pass
 
 func complete(params = null):

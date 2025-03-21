@@ -1,7 +1,7 @@
 @icon("../icons/StateEntity.svg")
-extends State
 ##Base class for all entity states.
 class_name StateEntity
+extends State
 
 var entity: CharacterEntity ##The entity to apply this state. If left empty and this state is child of a CharacterEntity, that entity will be taken.
 var entity_name := ""

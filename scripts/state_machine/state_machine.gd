@@ -77,6 +77,9 @@ func _process(delta):
 func _physics_process(delta):
 	_physics_update_states(delta)
 
+func _unhandled_input(event):
+	_handle_input_states(event)
+
 func _enter_states(sender = null):
 	for state in states:
 		state.active = !disabled
@@ -101,6 +104,13 @@ func _physics_update_states(delta):
 	for state in states:
 		if state.active:
 			state.physics_update(delta)
+
+func _handle_input_states(event):
+	if disabled or !initialized:
+		return
+	for state in states:
+		if state.active:
+			state.handle_input(event)
 
 ## Used to load the state machine data (from a save file).
 func receive_data(data: DataState):
