@@ -6,9 +6,9 @@
 [ext_resource type="Script" uid="uid://cmc5vhgmy6nat" path="res://scripts/state_machine/states/state_interact.gd" id="6_5lcsm"]
 [ext_resource type="Script" uid="uid://bgm8n3pwwbymt" path="res://scripts/interaction_area.gd" id="6_i2gae"]
 [ext_resource type="Script" uid="uid://dgeu5dy2dlgxo" path="res://scripts/checks/check.gd" id="6_vtlrw"]
-[ext_resource type="Script" uid="uid://dgcij6yixq4iw" path="res://scripts/checks/check_param_value.gd" id="7_i2gae"]
+[ext_resource type="Script" uid="uid://dgcij6yixq4iw" path="res://scripts/checks/check_prop_value.gd" id="7_i2gae"]
 [ext_resource type="Script" uid="uid://c0icpyv7syk84" path="res://entities/hit_box.gd" id="10_i2gae"]
-[ext_resource type="Script" uid="uid://di3e8lyqvjft4" path="res://scripts/state_machine/states/state_params_setter.gd" id="11_pga6i"]
+[ext_resource type="Script" uid="uid://di3e8lyqvjft4" path="res://scripts/state_machine/states/state_props_setter.gd" id="11_pga6i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oeede"]
 size = Vector2(42, 42)
@@ -125,8 +125,8 @@ size = Vector2(32, 32)
 
 [sub_resource type="Resource" id="Resource_pga6i"]
 script = ExtResource("7_i2gae")
-param_name = "is_running"
-param_value = "true"
+prop_name = "is_running"
+prop_value = "true"
 disabled = false
 metadata/_custom_type_script = ExtResource("7_i2gae")
 

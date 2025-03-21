@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://dp66ice2hhj8n" path="res://scripts/state_machine/state_machine.gd" id="7_7ld0m"]
 [ext_resource type="Script" uid="uid://b6ytiuesxsg2m" path="res://scripts/checks/check_items.gd" id="8_buda1"]
 [ext_resource type="Script" uid="uid://cmc5vhgmy6nat" path="res://scripts/state_machine/states/state_interact.gd" id="8_wnv1r"]
-[ext_resource type="Script" uid="uid://di3e8lyqvjft4" path="res://scripts/state_machine/states/state_params_setter.gd" id="10_cgx8t"]
+[ext_resource type="Script" uid="uid://di3e8lyqvjft4" path="res://scripts/state_machine/states/state_props_setter.gd" id="10_cgx8t"]
 [ext_resource type="Resource" uid="uid://dxiki22ipskft" path="res://dialogues/commons.dialogue" id="10_q52oa"]
 [ext_resource type="Script" uid="uid://cwq4nm0vsv1l5" path="res://scripts/state_machine/states/state_dialogue.gd" id="11_yfo47"]
 [ext_resource type="Resource" uid="uid://cfhugiau0dt13" path="res://dialogues/start.dialogue" id="12_k1igu"]
@@ -582,12 +582,18 @@ tile_map_data = PackedByteArray("AAAkAP//CQAXAAIAAAAkAP7/CQAXAAEAAAAkAP3/CQAXAAE
 [node name="Potion" parent="Props" index="0" instance=ExtResource("2_h8st3")]
 position = Vector2(560, 256)
 
+[node name="idle" parent="Props/Potion/StateMachine" index="0"]
+action_mode = null
+
 [node name="Chest" parent="Props" index="1" instance=ExtResource("3_tl0j8")]
 position = Vector2(736, 224)
 contents = Array[ExtResource("4_dln11")]([SubResource("Resource_iu1m7")])
 
 [node name="InteractionArea" parent="Props/Chest" index="2"]
 metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
+
+[node name="idle" parent="Props/Chest/StateMachine" index="0"]
+action_mode = null
 
 [node name="call_get_contents" parent="Props/Chest/StateMachine" index="2"]
 metadata/_custom_type_script = "uid://dd2m5xedjwd4m"
@@ -607,6 +613,7 @@ metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
 [node name="StateMachine" parent="Props/Door" index="3" groups=["save"]]
 
 [node name="closed" parent="Props/Door/StateMachine" index="0" node_paths=PackedStringArray("on_condition_not_met")]
+action_mode = null
 conditions = Array[ExtResource("7_7cyed")]([SubResource("Resource_uinl2")])
 on_condition_not_met = {
 "key_required": NodePath("../msg-door_closed")
@@ -649,6 +656,7 @@ current_state = NodePath("interact")
 script = ExtResource("8_wnv1r")
 interaction_area = NodePath("../../InteractionArea")
 action_trigger = "interact"
+action_mode = null
 one_shot = false
 on_completion = [NodePath("../start_dialogue")]
 
@@ -733,6 +741,7 @@ target_manager = NodePath("../../TargetManager")
 [node name="start_wander" type="Node" parent="Entities/Enemy1/ActionStates/follow" index="0" node_paths=PackedStringArray("interaction_area", "on_completion")]
 script = ExtResource("8_wnv1r")
 interaction_area = NodePath("../../../TargetReachedArea")
+action_mode = null
 one_shot = false
 on_completion = [NodePath("../../wander")]
 metadata/_custom_type_script = "uid://cmc5vhgmy6nat"
@@ -741,12 +750,13 @@ metadata/_custom_type_script = "uid://cmc5vhgmy6nat"
 script = ExtResource("8_wnv1r")
 interaction_area = NodePath("../../../FollowingArea")
 on_leaving = [NodePath("../../path")]
+action_mode = null
 one_shot = false
 metadata/_custom_type_script = "uid://cmc5vhgmy6nat"
 
 [node name="+speed" type="Node" parent="Entities/Enemy1/ActionStates/follow" index="2"]
 script = ExtResource("10_cgx8t")
-param_key = "entity"
+state_machine_key = "entity"
 on_enter = Dictionary[String, Variant]({
 "speed_multiplier": 1.25
 })
@@ -762,6 +772,7 @@ path = NodePath("../../../../Events/enemy_path")
 [node name="start_follow" type="Node" parent="Entities/Enemy1/ActionStates/path" index="0" node_paths=PackedStringArray("interaction_area", "on_completion")]
 script = ExtResource("8_wnv1r")
 interaction_area = NodePath("../../../TargetDetectionArea")
+action_mode = null
 one_shot = false
 check = 12
 on_completion = [NodePath("../../follow")]
@@ -769,7 +780,7 @@ metadata/_custom_type_script = "uid://cmc5vhgmy6nat"
 
 [node name="+friction" type="Node" parent="Entities/Enemy1/ActionStates/path" index="1"]
 script = ExtResource("10_cgx8t")
-param_key = "entity"
+state_machine_key = "entity"
 on_enter = Dictionary[String, Variant]({
 "friction_multiplier": 6.0
 })
@@ -830,6 +841,7 @@ metadata/_custom_type_script = "uid://dp66ice2hhj8n"
 [node name="interact" type="Node" parent="Events/exit-door/StateMachine" index="0" node_paths=PackedStringArray("interaction_area", "on_completion")]
 script = ExtResource("8_wnv1r")
 interaction_area = NodePath("../../InteractionArea")
+action_mode = null
 reset_delay = 0.0
 on_completion = [NodePath("../player_path")]
 metadata/_custom_type_script = "uid://cmc5vhgmy6nat"
@@ -842,14 +854,14 @@ on_completion = [NodePath("../enable_player")]
 
 [node name="disable_player" type="Node" parent="Events/exit-door/StateMachine/player_path" index="0"]
 script = ExtResource("10_cgx8t")
-param_key = "entity"
+state_machine_key = "entity"
 on_enter = Dictionary[String, Variant]({
 "input_enabled": false
 })
 
 [node name="enable_player" type="Node" parent="Events/exit-door/StateMachine" index="2"]
 script = ExtResource("10_cgx8t")
-param_key = "entity"
+state_machine_key = "entity"
 on_enter = Dictionary[String, Variant]({
 "input_enabled": true
 })
