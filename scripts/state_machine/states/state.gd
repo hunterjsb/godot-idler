@@ -6,8 +6,8 @@ class_name State
 @export var delay_start := Vector2.ZERO ## If greater than 0, waits for N seconds before enabling the state, where N is a random value between the minimum (x) and maximum (y) range.
 @export var disabled := false ## Set to true to avoid processing this state.
 @export_category("Advance")
-## States to enable when this state completes or when timer times expires.[br]
-## In a [i]StateInteract[/i] these are the states activated when the interaction is triggered.
+## States to enable when this state completes (calling the `complete()` method) or when the Await Timer times out.[br]
+## In a [i]StateInteract[/i], these are the states activated when the interaction is triggered.
 @export var on_completion: Array[State]
 @export_group("Await Timer")
 @export var delay_completion := Vector2.ZERO ## If greater than 0, waits for N seconds before completing the state, where N is a random value between the minimum (x) and maximum (y) range.
@@ -67,7 +67,7 @@ func physics_update(_delta: float):
 	pass
 
 func complete(params = null):
-	if !timer:
+	if delay_completion == Vector2.ZERO:
 		_enable_on_completion(params)
 
 func _enable_on_completion(params):

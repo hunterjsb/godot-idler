@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://r3iqi7bb4jyw"]
+[gd_scene load_steps=13 format=3 uid="uid://r3iqi7bb4jyw"]
 
 [ext_resource type="Texture2D" uid="uid://bercby56x5j58" path="res://scenes/props/objs1.png" id="1_kr3p2"]
 [ext_resource type="Script" uid="uid://c0icpyv7syk84" path="res://entities/hit_box.gd" id="2_axmhi"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" uid="uid://btmy7sadqiuav" path="res://scripts/state_machine/states/state_animation.gd" id="6_yabv5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_10tvr"]
-radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xypjg"]
+radius = 25.0
 
 [sub_resource type="Animation" id="Animation_oojgl"]
 length = 0.001
@@ -89,7 +91,7 @@ hp_change = 2
 metadata/_custom_type_script = "uid://c0icpyv7syk84"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RecoveryBox"]
-shape = SubResource("CircleShape2D_10tvr")
+shape = SubResource("CircleShape2D_xypjg")
 disabled = true
 debug_color = Color(0.658824, 0.513726, 0, 0.419608)
 
@@ -108,7 +110,6 @@ current_state = NodePath("idle")
 [node name="idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("interaction_area", "on_completion")]
 script = ExtResource("5_xi0mn")
 interaction_area = NodePath("../../InteractionArea")
-action_mode = null
 on_completion = [NodePath("../enable_recover_area")]
 
 [node name="idle_animation" type="Node" parent="StateMachine/idle" node_paths=PackedStringArray("animation_player")]
