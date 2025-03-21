@@ -582,9 +582,6 @@ tile_map_data = PackedByteArray("AAAkAP//CQAXAAIAAAAkAP7/CQAXAAEAAAAkAP3/CQAXAAE
 [node name="Potion" parent="Props" index="0" instance=ExtResource("2_h8st3")]
 position = Vector2(560, 256)
 
-[node name="idle" parent="Props/Potion/StateMachine" index="0"]
-action_mode = "Pressed"
-
 [node name="Chest" parent="Props" index="1" instance=ExtResource("3_tl0j8")]
 position = Vector2(736, 224)
 contents = Array[ExtResource("4_dln11")]([SubResource("Resource_iu1m7")])

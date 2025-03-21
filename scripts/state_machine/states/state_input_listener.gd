@@ -1,20 +1,13 @@
-extends StateEntity
-##Moves and controls an entity through inputs.
+@icon("../icons/StateInputListener.svg")
+## This state listens for input actions and calls a method on a target node when the input is detected.
 class_name StateInputListener
+extends State
 
-@export var run_speed_increment := 1.5
+@export var node_ref: Node ## The target node on which the method will be called.
+@export var input_actions: Array[InputAction] = [] ## An array of input actions to listen for.
 
-var input_dir: Vector2
-
-func physics_update(_delta):
-	if entity and entity.input_enabled:
-		_handle_inputs()
-
-func _handle_inputs():
-	input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	if Input.is_action_just_pressed("jump"):
-		entity.jump()
-	if Input.is_action_just_pressed("attack"):
-		entity.attack()
-	entity.speed_multiplier = run_speed_increment if Input.get_action_strength("run") > 0 else 1.0
-	entity.move(input_dir)
+func handle_input(event: InputEvent):
+	if !event.is_action_type():
+		return
+	for input_data in input_actions:
+		input_data.check_input(event, node_ref)
