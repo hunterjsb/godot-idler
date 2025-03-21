@@ -10,6 +10,7 @@ class_name StateInteract
 		update_configuration_warnings()
 @export var on_leaving: Array[State] ## States to enable on exiting the area.
 @export var action_trigger := "" ## The input action (as in the Input Map) that will trigger the interaction. Leave empty to trigger on area entered.
+@export_enum("Pressed", "Released") var action_mode := "Pressed" ## Determines the action mode for the input action.
 @export_category("Conditions")
 @export var conditions: Array[Check] = []: ## A list of conditions to met in order to trigger the interaction.
 	set(value):
@@ -56,8 +57,9 @@ func _reset_entity():
 func update(_delta):
 	if not entity or action_trigger.is_empty():
 		return
-	if entity.input_enabled and Input.is_action_just_pressed(action_trigger):
-		_try_to_interact()
+	if entity.input_enabled:
+		if action_mode == "Pressed" and Input.is_action_just_pressed(action_trigger) or action_mode == "Released" and Input.is_action_just_released(action_trigger):
+			_try_to_interact()
 
 func _try_to_interact():
 	if _can_interact():
