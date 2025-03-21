@@ -524,7 +524,7 @@ script = ExtResource("4_b1v48")
 [node name="attack" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("on_completion")]
 script = ExtResource("12_m3ydn")
 on_completion = [NodePath("../move")]
-time_range = Vector2(0.2, 0.2)
+delay_completion = Vector2(0.2, 0.2)
 
 [node name="is_attacking" type="Node" parent="StateMachine/attack" index="0" node_paths=PackedStringArray("node")]
 script = ExtResource("9_fvq3l")
@@ -561,7 +561,7 @@ metadata/_custom_type_script = "uid://di3e8lyqvjft4"
 script = ExtResource("12_m3ydn")
 impulse_force = -450.0
 on_completion = [NodePath("../move")]
-time_range = Vector2(0.25, 0.25)
+delay_completion = Vector2(0.25, 0.25)
 
 [node name="hurt_animation" type="Node" parent="StateMachine/hurt" index="0" node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("9_p7spi")
@@ -589,7 +589,7 @@ metadata/_custom_type_script = "uid://dd2m5xedjwd4m"
 [node name="fall" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("on_completion")]
 script = ExtResource("8_bp05k")
 on_completion = [NodePath("../move")]
-time_range = Vector2(0.2, 0.2)
+delay_completion = Vector2(0.2, 0.2)
 
 [node name="set-is_falling" type="Node" parent="StateMachine/fall" index="0" node_paths=PackedStringArray("node")]
 script = ExtResource("9_fvq3l")

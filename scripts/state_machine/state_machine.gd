@@ -79,7 +79,6 @@ func _physics_process(delta):
 
 func _enter_states(sender = null):
 	for state in states:
-		state.enter()
 		state.active = !disabled
 	if debug:
 		print("%s entered states: %s - Sender: %s" % [get_parent().name, states.map(func(state): return state.name), sender])

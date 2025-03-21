@@ -70,7 +70,7 @@ position = Vector2(288, 168)
 
 [node name="picked" parent="Props/Potion/StateMachine" index="2" node_paths=PackedStringArray("on_completion")]
 on_completion = [NodePath("../idle")]
-time_range = Vector2(3, 3)
+delay_completion = Vector2(3, 3)
 
 [node name="P1" parent="Entities" index="0"]
 position = Vector2(96, 240)

@@ -203,7 +203,7 @@ script = ExtResource("4_op40x")
 animation_player = NodePath("../../AnimationPlayer")
 animation = "up"
 on_completion = [NodePath("../down")]
-time_range = Vector2(1, 1)
+delay_completion = Vector2(1, 1)
 
 [node name="toggle_hitbox" type="Node" parent="StateMachine/animation_up" node_paths=PackedStringArray("node")]
 script = ExtResource("11_pga6i")
