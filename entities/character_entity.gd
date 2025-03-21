@@ -81,6 +81,7 @@ func _ready():
 	_init_inventory()
 	animation_tree.active = true
 	hit.connect(func(): if on_hit: enable_state(on_hit))
+	weapon = weapon ## Initialize the weapon.
 	if initial_facing:
 		facing = initial_facing.to_vector
 
@@ -160,7 +161,7 @@ func move_towards(_position):
 
 ## Handles entity movement, applying the right velocity to the body.
 func move(direction: Vector2):
-	if is_attacking or is_charging:
+	if is_attacking:
 		return
 	var delta = get_process_delta_time()
 	var target_velocity = Vector2.ZERO
@@ -221,7 +222,7 @@ func return_to_safe_position():
 		global_position = safe_position
 
 func enable_state(state: State):
-	if health_controller.hp > 0:
+	if state and health_controller.hp > 0:
 		state.enable()
 
 ##Stops the entity, setting its velocity to 0.

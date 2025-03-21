@@ -60,7 +60,7 @@ change_states = Dictionary[String, String]({
 "off": "up",
 "on": "down"
 })
-metadata/_custom_type_script = ExtResource("4_0mcwu")
+metadata/_custom_type_script = "uid://ccgjxk0s51hvy"
 
 [node name="Trap" parent="Props" index="2" instance=ExtResource("5_xydwj")]
 position = Vector2(480, 224)
@@ -70,7 +70,7 @@ position = Vector2(288, 168)
 
 [node name="picked" parent="Props/Potion/StateMachine" index="2" node_paths=PackedStringArray("on_completion")]
 on_completion = [NodePath("../idle")]
-time_range = Vector2(3, 3)
+delay_completion = Vector2(3, 3)
 
 [node name="P1" parent="Entities" index="0"]
 position = Vector2(96, 240)
@@ -79,21 +79,33 @@ position = Vector2(96, 240)
 position = Vector2(96, 80)
 destination_name = "Transfer_02"
 
+[node name="InteractionArea" parent="Transfers/Transfer_01" index="0"]
+metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
+
 [node name="CollisionShape2D" parent="Transfers/Transfer_01/InteractionArea" index="0"]
 shape = SubResource("RectangleShape2D_1pv57")
 
 [node name="interact" parent="Transfers/Transfer_01/StateMachine" index="0"]
 conditions = Array[ExtResource("8_anikj")]([SubResource("Resource_i3j8m")])
 
+[node name="call_transfer" parent="Transfers/Transfer_01/StateMachine" index="1"]
+metadata/_custom_type_script = "uid://dd2m5xedjwd4m"
+
 [node name="Transfer_02" parent="Transfers" index="1" instance=ExtResource("7_w2oln")]
 position = Vector2(96, 400)
 destination_name = "Transfer_01"
+
+[node name="InteractionArea" parent="Transfers/Transfer_02" index="0"]
+metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
 
 [node name="CollisionShape2D" parent="Transfers/Transfer_02/InteractionArea" index="0"]
 shape = SubResource("RectangleShape2D_1pv57")
 
 [node name="interact" parent="Transfers/Transfer_02/StateMachine" index="0"]
 conditions = Array[ExtResource("8_anikj")]([SubResource("Resource_phe5r")])
+
+[node name="call_transfer" parent="Transfers/Transfer_02/StateMachine" index="1"]
+metadata/_custom_type_script = "uid://dd2m5xedjwd4m"
 
 [node name="Transfer_East" parent="Transfers" index="2" instance=ExtResource("7_w2oln")]
 position = Vector2(672, 240)
