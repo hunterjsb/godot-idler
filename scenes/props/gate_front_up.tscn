@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cg11jqxohxkdv"]
 
-[ext_resource type="Texture2D" uid="uid://dxgjym3ogh8u1" path="res://scenes/props/blocks.png" id="1_5cyoo"]
+[ext_resource type="Texture2D" uid="uid://dks6ukqiocu3p" path="res://scenes/props/blocks.png" id="1_5cyoo"]
 [ext_resource type="Script" uid="uid://dp66ice2hhj8n" path="res://scripts/state_machine/state_machine.gd" id="2_4jk5e"]
 [ext_resource type="Script" uid="uid://btmy7sadqiuav" path="res://scripts/state_machine/states/state_animation.gd" id="4_h0g83"]
 
@@ -167,7 +167,6 @@ animation = "idle_up"
 script = ExtResource("4_h0g83")
 animation_player = NodePath("../../AnimationPlayer")
 animation = "down"
-await_completion = true
 on_completion = [NodePath("../idle_down")]
 
 [node name="idle_down" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player")]
@@ -179,5 +178,4 @@ animation = "idle_down"
 script = ExtResource("4_h0g83")
 animation_player = NodePath("../../AnimationPlayer")
 animation = "up"
-await_completion = true
 on_completion = [NodePath("../idle_up")]

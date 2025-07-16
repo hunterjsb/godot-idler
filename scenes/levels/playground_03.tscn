@@ -56,7 +56,7 @@ collision_layer = 0
 collision_mask = 8
 monitorable = false
 script = ExtResource("5_yy2wo")
-metadata/_custom_type_script = ExtResource("5_yy2wo")
+metadata/_custom_type_script = "uid://bgm8n3pwwbymt"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Gate_Front/InteractionArea" index="0"]
 shape = SubResource("CircleShape2D_4uq14")
@@ -68,7 +68,7 @@ interaction_area = NodePath("../../../InteractionArea")
 action_trigger = "interact"
 one_shot = false
 on_completion = [NodePath("../../down")]
-metadata/_custom_type_script = ExtResource("7_akxd2")
+metadata/_custom_type_script = "uid://cmc5vhgmy6nat"
 
 [node name="Trap" parent="Props" index="4" instance=ExtResource("7_ygy3h")]
 position = Vector2(224, 160)
